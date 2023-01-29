@@ -1,25 +1,47 @@
-import logo from './logo.svg';
+import React, { useState, useRef, useEffect } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+  const apiUrl = 'http://localhost:3000/locations'
+
+  const [locations, setLocations] = useState(null)
+
+  const getLocations = useRef()
+
+  getLocations.current = async () => {
+    const response = await fetch(apiUrl)
+    const data = await response.json()
+    setLocations(data)
+    // console.log(data)
+  }
+
+   useEffect(() => {
+    getLocations.current()
+  }, [])
+
+  const loaded = () => {
+
+    return (
+      locations?.map((location, index) => {
+        // console.log('mapped data', location.projects[0].name)
+        return (
+          <div key={index}>
+            <h1>Home Page</h1>
+            <p>{location.name}</p>
+          </div>
+        )
+      })
+    )
+  }
+
+  const loading = () => {
+    return (
+      <h1>Loading .....</h1>
+    )
+  }
+
+  return locations ? loaded() : loading()
 }
 
 export default App;
