@@ -1,53 +1,58 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useEffect} from "react"
 import { Link } from "react-router-dom"
 import Layout from "../components/Layout"
+import { useAppState } from "../AppState"
+import "../styles/dashboard.css"
 
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+    // console.log(props)
 
-    const apiUrl = 'http://localhost:3000/locations'
+    const {state, dispatch} = useAppState(null)
+    // console.log(state)
+    const { apiUrl, locations } = state
 
-    const [locations, setLocations] = useState(null)
-
-    const getLocations = useRef()
-
-    getLocations.current = async () => {
-        const response = await fetch(apiUrl)
-        const data = await response.json()
-        setLocations(data)
-        // console.log(data)
+    const getProjects = async () => {
+        const response = fetch(apiUrl + "/locations/")
+        const locations = await (await response).json()
+        dispatch({type: "getLocations", payload: locations})
     }
 
     useEffect(() => {
-        getLocations.current()
+        getProjects()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const loaded = () => {
-
-        return (
-            locations?.map((location, index) => {
-            console.log('mapped data', location.projects)
-                return (
-                    <Layout>
-                        <div key={index}>
-                            <h1>Dashboard</h1>
-                            <Link to="/create">New Project</Link>
-                            <p>{location.name}</p>
-                            <Link to="/">Go to Home Page</Link>
+    const loaded = () => {  
+            return(
+            <Layout>
+                <h1>Dashboard</h1>
+                <Link to="/create"><button>New Project</button></Link>
+                <div>
+                    {locations.map((location) => (
+                        <div id="project-card" key={location.id}>
+                            <h2>Location: {location.name}</h2>
+                            {
+                                location.projects.map((project)=> (
+                                    // console.log(project)
+                                    <h3>{project.name}</h3>
+                                ))
+                            }
                         </div>
-                    </Layout>
-                )
-            })
+                    ))}
+                </div>   
+                <Link to="/"><button>Go to Home Page</button></Link>
+            </Layout>
         )
+        
     }
 
-  const loading = () => {
-    return (
-      <h1>Loading .....</h1>
-    )
-  }
-
-  return locations ? loaded() : loading()
+    const loading = () => {
+        return <Layout><h1>Loading...</h1></Layout>
+    }
+    
+    return locations ? loaded() : loading()
+           
 }
 
 export default Dashboard
