@@ -1,0 +1,16 @@
+#home-upper-container{
+    margin-top: 150px;
+}
+
+#home-mid-container{
+    width: 95vw;
+    margin: 0 auto;
+    border: 2px solid white;
+    border-radius: 8px;
+    padding: 30px 30px;
+}
+
+#home-locations-card{
+    border-bottom: 2px solid grey;
+    margin: 10px auto;
+}

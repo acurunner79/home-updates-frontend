@@ -1,0 +1,15 @@
+#top-navbar{
+    display: none;
+}
+
+#top-navbar-links-container{
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+}
+
+@media (min-width: 767px) {
+    #top-navbar {
+            display: inline;
+    }
+}

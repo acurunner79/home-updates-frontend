@@ -1,23 +1,33 @@
 import React from 'react';
-import { Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import HomePage from './pages/HomePage';
 import CreateProjectForm from './components/CreateProjectForm';
-import { AppState } from './AppState';
+import CreateLocationForm from './components/CreateLocationForm';
+import { useAppState } from './AppState.jsx';
+import LocationProjects from './pages/LocationProjects';
+import Test from './components/TestAccordion';
 
-import './App.css';
+// import './App.css';
 
 const App = () => {
+
+  const { state } = useAppState()
+
+  
+  // console.log('state from Appjs', state)
   return (
-    <AppState>
-      <Router>
+ 
         <Routes>
-          <Route path="/" element={<HomePage />}/>
-          <Route path="/dashboard" element={<Dashboard />}/>
-          <Route path="/create" element={<CreateProjectForm />}/>
+          <Route exact path="/home" element={<HomePage {...state}/>}/>
+          <Route path="/dashboard" element={<Dashboard {...state}/>}/>
+          <Route path="/projects" element={<LocationProjects {...state}/>}/>
+          <Route path="/dashboard/:action" element={<CreateProjectForm {...state}/>}/>
+          <Route path="/home/:action" element={<CreateLocationForm {...state}/>}/>
+          <Route path="/test" element={<Test />}/>
         </Routes>
-      </Router>
-    </AppState>
+    
+
   )
 }
 

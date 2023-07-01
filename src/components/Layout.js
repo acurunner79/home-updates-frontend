@@ -1,4 +1,6 @@
 import React from "react";
+import TopNav from "./TopNav";
+import Hamburger from './Hamburger'
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
@@ -31,12 +33,19 @@ button{
     margin: 15px auto;
     border-radius: 8px;
 }
+
+a{
+    text-decoration: none;
+    color: white;
+}
 `
 
 const Layout = ({ children }) => {
     return (
         <div>
             <GlobalStyle />
+            <Hamburger />
+            <TopNav />
             <section>{children}</section>
         </div>
     )
