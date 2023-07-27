@@ -45,25 +45,27 @@ const LocationProjects = () => {
                                     <Accordion>
                                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                                             <Typography>
-                                                <h2>Project Name: {data.name || "No Projects"}</h2>
+                                                <h2>Project Name: <br/>{data.name || <h2>No Projects</h2>}</h2>
+                                                <div id="seperator"></div>
                                             </Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
                                             <Typography>
-                                                <h2>Priority: {data.priority}</h2>
-                                                <h2>Start Date: {data.start}</h2>
-                                                <h2>End Date: {data.completion}</h2>
-                                                <h2>Estimate: ${data.estimate}</h2>
-                                                <h2>Supplies: {data.supply1}</h2>
-                                                <h2>Supplies: {data.supply2}</h2>
-                                                <h2>Supplies: {data.supply3}</h2>
-                                                <h2>Supplies: {data.supply4}</h2>
-                                                <h2>Supplies: {data.supply5}</h2>
-                                                <h2>Supplies: {data.supply6}</h2>
-                                                <h2>Supplies: {data.supply7}</h2>
-                                                <h2>Supplies: {data.supply8}</h2>
-                                                <h2>Supplies: {data.supply9}</h2>
-                                                <h2>Supplies: {data.supply10}</h2>
+                                                <h2 className="project-items">Priority: {data.priority}</h2>
+                                                <h2 className="project-items">Start Date: {data.start}</h2>
+                                                <h2 className="project-items">End Date: {data.completion}</h2>
+                                                <h2 className="project-items">Estimate: ${data.estimate}</h2>
+                                                <div id="seperator"></div>
+                                                <h3 className="project-items">Supplies: {data.supply1}</h3>
+                                                <h3 className="project-items">Supplies: {data.supply2}</h3>
+                                                <h3 className="project-items">Supplies: {data.supply3}</h3>
+                                                <h3 className="project-items">Supplies: {data.supply4}</h3>
+                                                <h3 className="project-items">Supplies: {data.supply5}</h3>
+                                                <h3 className="project-items">Supplies: {data.supply6}</h3>
+                                                <h3 className="project-items">Supplies: {data.supply7}</h3>
+                                                <h3 className="project-items">Supplies: {data.supply8}</h3>
+                                                <h3 className="project-items">Supplies: {data.supply9}</h3>
+                                                <h3 className="project-items">Supplies: {data.supply10}</h3>
                                             </Typography>
                                         </AccordionDetails>
                                         <Accordion>
@@ -72,17 +74,19 @@ const LocationProjects = () => {
                                             </AccordionSummary>
                                             <AccordionDetails>
                                                 <Typography>
-                                                    <h2>{data.description}</h2>
+                                                    <p>{data.description}</p>
                                                 </Typography>
                                             </AccordionDetails>
                                         </Accordion>
                                     </Accordion>
                                 </div>              
                             )
-                        })
+                        || <h2>No Projects</h2>})
                         }
                 </div>
-                <Link to="/home">Back to Home</Link>
+                <div className="back-home-link">
+                    <Link to="/home">Back to Home</Link>
+                </div>
             </Layout>
         )
     }
@@ -92,7 +96,7 @@ const LocationProjects = () => {
         return <Layout><h1>Loading projects list</h1></Layout>
     }
 
-    return projectsList ? loaded() : loading()
+    return projectsList ? loaded() : loading() 
 }
 
 export default LocationProjects

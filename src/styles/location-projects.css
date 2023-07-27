@@ -12,3 +12,16 @@
 button.accordion-button.collapsed{
     background-color: brown;
 }
+
+.project-items{
+    text-align: left;
+}
+
+.back-home-link{
+    margin-top: 2em;
+}
+
+#seperator{
+    border: 2px solid rgb(148, 147, 147);
+    margin: 10px auto;
+}
