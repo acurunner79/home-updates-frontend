@@ -17,7 +17,7 @@ const CreateProjectForm = () => {
     //  console.log('location id', location_id)
 
     const match = useParams()
-    console.log(match.action)
+    // console.log(match.action)
     const navigate = useNavigate()
     
     const [formData, setFormData] = useState(state[match.action])
@@ -64,20 +64,24 @@ const CreateProjectForm = () => {
             <div value={state.location_id}>
                 <form onSubmit={handleSubmit} id="form-card">
                     <h2>Project Details</h2>
-                    <input className="form-input"
-                        type="text"
-                        name="name"
-                        placeholder="Project Name"
-                        value={formData?.name}
-                        onChange={handleChange}
-                    />
-                    <input className="form-input"
-                        type="text"
-                        name="priority"
-                        placeholder="Priority Level"
-                        value={formData?.priority}
-                        onChange={handleChange}
-                    />
+                    <label>Project Name
+                        <input className="form-input"
+                            type="text"
+                            name="name"
+                            placeholder="Project Name"
+                            value={formData?.name}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>Priority Level
+                        <input className="form-input"
+                            type="text"
+                            name="priority"
+                            placeholder="Priority Level"
+                            value={formData?.priority}
+                            onChange={handleChange}
+                        />
+                    </label>
                     <input className="form-input"
                         type="text"
                         name="start"

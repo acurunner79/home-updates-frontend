@@ -2,7 +2,7 @@ import React, { useReducer, useContext, createContext } from "react";
 
 
 const initialState = {
-    apiUrl: "http://localhost:3000",
+    apiUrl: "https://home-updates-api.onrender.com",
     locations: null,
     projectsList: null,
     newLocation: {
